@@ -83,13 +83,6 @@ export const toolbox = {
       contents: [
         {
           kind: 'BLOCK',
-          blockxml: `<block type = "text_to_list">
-                      <value name = "TEXTVALUE"></value>
-                    </block>`,
-          type: 'text_to_list',
-        },
-        {
-          kind: 'BLOCK',
           blockxml: '<block type="math_number"></block>',
           type: 'math_number',
         },
@@ -248,6 +241,24 @@ export const toolbox = {
     {
       kind: 'CATEGORY',
       contents: [
+        {
+          kind: 'BLOCK',
+          blockxml: '<block type = "multiline_test"></block>',
+          type: 'multiline_test',
+        },
+        {
+          kind: 'BLOCK',
+          blockxml: `<block type = "text_to_list">
+                      <value name = "TEXTVALUE"></value>
+                    </block>`,
+          type: 'text_to_list',
+        },
+        {
+          kind: 'BLOCK',
+          blockxml:
+            '<block type = "text_to_list_version_two"></block>',
+          type: 'text_to_list_version_two',
+        },
         {
           kind: 'BLOCK',
           blockxml:
