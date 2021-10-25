@@ -17,29 +17,15 @@ const Component = () => {
       message0: 'Text To List %1',
       args0: [
         {
-          type: 'input_value',
+          // type: 'input_value',
+          type: 'field_multilinetext',
           name: 'TEXTVALUE',
           text: 'Enter Text',
-          check: 'String',
+          // check: 'String',
         },
       ],
       output: 'Array',
       colour: 120,
-      tooltip: '',
-      helpUrl: '',
-    },
-    {
-      type: 'multiline_text',
-      message0: 'Multiline Text %1',
-      args0: [
-        {
-          type: 'field_multilinetext',
-          name: 'MULTILINETEXT',
-          text: '',
-        },
-      ],
-      output: 'String',
-      colour: 330,
       tooltip: '',
       helpUrl: '',
     },
@@ -48,15 +34,16 @@ const Component = () => {
   (Blockly as any).JavaScript['text_to_list'] = function (
     block: any,
   ) {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    var text_textvalue = (Blockly as any).JavaScript.valueToCode(
-      block,
-      'TEXTVALUE',
-      (Blockly as any).JavaScript.ORDER_NONE,
-    );
+    // Using input value
+    // var textValue = (Blockly as any).JavaScript.valueToCode(
+    //   block,
+    //   'TEXTVALUE',
+    //   (Blockly as any).JavaScript.ORDER_NONE,
+    // );
+    // Using field value
+    var fieldValue = block.getFieldValue('TEXTVALUE');
     // TODO: Assemble JavaScript into code variable.
-    var testcode = text_textvalue + ".split('\\n')";
-    var code = 'console.log(' + testcode + ')';
+    var code = fieldValue + ".split('\\n')";
     return code;
   };
 
