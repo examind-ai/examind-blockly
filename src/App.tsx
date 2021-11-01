@@ -114,11 +114,15 @@ const Component = () => {
   (Blockly as any).JavaScript['text_to_list'] = function (
     block: any,
   ) {
-    var fieldValue = block.getFieldValue('TEXTVALUE');
+    var fieldValue = block.getFieldValue('TEXTVALUE') as
+      | string
+      | null
+      | undefined;
     // TODO: Assemble JavaScript into code variable.
-    // eslint-disable-next-line no-useless-concat
-    var code = fieldValue.toString() + ".split('\\n')";
-    return code;
+    let splitString = fieldValue?.split('\n') ?? [];
+    let final = splitString.map(s => `'${s}'`).join(', ');
+    var code = '[' + final + ']';
+    return [code, (Blockly as any).JavaScript.ORDER_ATOMIC];
   };
 
   // Block input
@@ -132,7 +136,7 @@ const Component = () => {
     );
     // TODO: Assemble JavaScript into code variable.
     var code = '(' + textValue + ')' + ".split('\\n')";
-    return code;
+    return [code, (Blockly as any).JavaScript.ORDER_ATOMIC];
   };
 
   useEffect(() => {
