@@ -36,6 +36,21 @@ const Component = () => {
       tooltip: 'My Block',
       helpUrl: 'null',
     },
+    // {
+    //   type: 'text_list',
+    //   message0: 'Text To List %1',
+    //   args0: [
+    //     {
+    //       type: 'field_multilinetext',
+    //       name: 'TEXTVALUE',
+    //       text: 'Enter Text',
+    //     },
+    //   ],
+    //   output: 'Array',
+    //   colour: 120,
+    //   tooltip: '',
+    //   helpUrl: '',
+    // },
   ]);
 
   // random in steps function definition
@@ -94,6 +109,30 @@ const Component = () => {
       ')';
     return [code, (Blockly as any).JavaScript.ORDER_FUNCTION_CALL];
   };
+
+  (Blockly as any).Blocks['text_list'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("text to list:")
+          .appendField(new Blockly.FieldMultilineInput('some multiline stuff'),
+              'text_content');
+      this.setOutput(true, 'Array');
+      this.setColour(270);
+    }
+  };
+  
+  
+  (Blockly as any).JavaScript['text_list'] = function(
+    block: { getFieldValue: (arg0: string) => any; }) 
+    {
+    let text_list_text = block.getFieldValue('text_content') as string | null | undefined;
+    //let text_list_text = (Blockly as any).JavaScript.valueToCode(block, 'text_content', (Blockly as any).JavaScript.ORDER_ATOMIC);
+    let split_string = text_list_text?.split("\n") ?? [];
+    let joined = split_string.map(s => `'${s}'`).join(', ');
+    let code = '[' + joined + ']';
+    return [code, (Blockly as any).JavaScript.ORDER_ATOMIC];
+  };
+
 
   const toolbox = {
     contents: [
@@ -368,6 +407,16 @@ const Component = () => {
           },
           {
             kind: 'BLOCK',
+            blockxml:
+              `<block type="text_list">
+              <value name="text_content">
+              <field name="text_field">stuff in here</field>
+              </value>
+            </block>`,
+            type: 'text_list',
+          },
+          {
+            kind: 'BLOCK',
             blockxml: '<block type="lists_create_with"></block>',
             type: 'lists_create_with',
           },
@@ -479,6 +528,8 @@ const Component = () => {
     style: 'display: none',
   };
 
+  let code_bool = false;
+
   useEffect(() => {
     let ws = Blockly.inject(blocklyRef.current, {
       toolbox: toolbox as any,
@@ -500,6 +551,10 @@ const Component = () => {
     // output JS to console.
     function outputJS() {
       let cd = (Blockly as any).JavaScript.workspaceToCode(ws);
+      if (code_bool) {
+        //eslint-disable-next-line
+        window.eval(cd);
+      }
       console.log(cd);
     }
 
