@@ -21,10 +21,10 @@ Returns array of strings.
 ## Block Generator Proof of Concept
 
 Customm block genterator proof of concept can be used  by running
-the html page called block.html
+the html page called block.html.
 The initial inputs are the block's base properties and a field for the generators JavaScript.
-Once the number of inputs is entered click "get inputs"
-Once input fields are indicated, click "get fields"
+Once the number of inputs is entered click "get inputs".
+Once input fields are indicated, click "get fields".
 Enter field data and finally click "build".
-This should print the xml, JSON and Generator JS to the console.log
+This should print the xml, JSON and Generator JS to the console.log.
 
