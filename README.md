@@ -3,15 +3,15 @@
 Blockly Workspace in React app with custom blocks made for Examind
 
 ## Setup
-
+```
 git clone https://github.com/examind-ai/examind-blockly.git
 cd examind-blockly
 npm install
-
+```
 ## Start React app
-
+```
 npm run start
-
+```
 ## custom "text_List" block
 
 Custom "text_list" block is in the Array category in the workspace's block library.
