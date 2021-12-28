@@ -12,7 +12,7 @@ npm install
 ```
 npm run start
 ```
-## custom "text_List" block
+## Custom "text_List" Block
 
 Custom "text_list" block is in the Array category in the workspace's block library.
 Can be used in the place of an array.
