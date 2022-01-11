@@ -20,7 +20,9 @@ Returns array of strings.
 
 ## Block Generator Proof of Concept
 
-Customm block genterator proof of concept can be used  by running
+https://github.com/daffyd-jones/block
+
+Custom block genterator proof of concept can be used  by running
 the html page called block.html.
 The initial inputs are the block's base properties and a field for the generators JavaScript.
 Once the number of inputs is entered click "get inputs".
